@@ -1,19 +1,19 @@
 
 
 var VideoListEntry = (props) => {
-  var handleVideoChange = () => {
-    console.log('handleVideoChange was invoked');
-    let currentVideo = props.video;
-    props.clickVideo(currentVideo);
+  // var handleVideoChange = () => {
+  //   console.log('handleVideoChange was invoked');
+  //   let currentVideo = props.video;
+  //   props.clickVideo(currentVideo);
     
-  };
+  // };
   return (
     <div className="video-list-entry media">
       <div className="media-left media-middle">
         <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
       </div>
       <div className="media-body">
-        <div className="video-list-entry-title" onClick={handleVideoChange}>{props.video.snippet.title}</div>
+        <div className="video-list-entry-title" onClick={() => props.clickVideo(props.video)}>{props.video.snippet.title}</div>
         <div className="video-list-entry-detail">{props.video.snippet.description}</div>
       </div>
     </div>);
