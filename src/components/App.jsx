@@ -2,6 +2,7 @@ import Search from './Search.js';
 import VideoList from './VideoList.js';
 import VideoPlayer from './VideoPlayer.js';
 import exampleVideoData from '../data/exampleVideoData.js';
+import searchYouTube from '../lib/searchYouTube.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,44 +10,50 @@ class App extends React.Component {
     this.state = {
       videos: exampleVideoData,
       currentVideo: exampleVideoData[0],
+      query: 'teahupoo',
 
     };
-   
+    this.setVideos = this.setVideos.bind(this);
+    this.clickVideo = this.clickVideo.bind(this);
+  }
+  setVideos(videos) {
+    this.setState({videos: videos.items});
+  }
+
+  
+  componentDidMount() {
+    const options = {q: this.state.query};
+    searchYouTube(options, this.setVideos);
 
   }
+
   clickVideo(newVideo) {
-    console.log('clicked');
+    // console.log('clicked');
     this.setState({currentVideo: newVideo});
   }
 
-  handleClick(data) {
-    console.log(data);
+  handleChange(query) {
+    const options = {q: this.state.query};
+
+    this.setState({query}, searchYouTube(options, this.setVideos.bind(this)));
+
   }
-  // handleClick() {
-  //   this.setState(state => ({
-  //     video: 
-  //   })
-  // }
-  // var handleClick = function() {
-  //   console.log('It was clicked');
-  // };
+
 
   render() {
 
     return (
       <div>
-
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div id="search"><h5><em>search</em><Search /></h5></div>
-          </div>
+            <div id="search"></div><em>search</em><Search handleChange={this.handleChange.bind(this)} /></div>
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <div id ="videoPlayer"><h5><em>videoPlayer</em> <VideoPlayer currentVideo={this.state.currentVideo} /></h5></div>
+            <div id ="videoPlayer"><em>videoPlayer</em> <VideoPlayer video={this.state.currentVideo} /></div>
           </div>
           <div className="col-md-5">
-            <div id="videoList"><h5><em>videoList</em> <VideoList videos={this.state.videos} clickVideo={this.clickVideo.bind(this)}/></h5></div>
+            <div id="videoList"><em>videoList</em> <VideoList videos={this.state.videos} clickVideo={this.clickVideo}/></div>
           </div>
         </div>
       </div>

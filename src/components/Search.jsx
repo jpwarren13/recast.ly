@@ -1,19 +1,40 @@
+import searchYouTube from '../lib/searchYouTube.js';
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      value: '',
+    };
+    this.updateText = this.updateText.bind(this);
   }
+
+  updateText(e) {
+    this.setState({value: e.target.value});
+  }
+
+  updateInputValue(val) {
+    this.setState({
+      inputValue: val.value
+    });
+  }
+
+
+
 
   render() {
     return (
       <div className="search-bar form-inline">
-        <input className="form-control" type="text" />
-        <button className="btn hidden-sm-down">
+        <input className="form-control" type="text" value={this.state.value} onChange={ this.updateText}/>
+        <button className="btn hidden-sm-down" onClick={() => this.props.handleChange(this.state.value)}>
           <span className="glyphicon glyphicon-search"></span>
         </button>
       </div> 
     );
   }
 }
+{ /* {this.state.inputValue} onChange={val => this.updateInputValue} */ }
+
 
 
 
