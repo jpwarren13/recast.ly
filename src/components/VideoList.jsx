@@ -11,22 +11,6 @@ var VideoList = (props) => (
     {props.videos.map((video) => (<VideoListEntry video={video} clickVideo={props.clickVideo}/>))}
   </div>
 );
-// class VideoList extends React.Component {
-//   constuctor(props){
-//     super(props);
-//     //this.videos = this.props.videos;
-//   }
-
-//   render(){
-//  //this.props.videoList = exampleVideoData;
-
-//  return ( <div className="video-list">
-    
-//     {this.props.videos.map((video) => (<VideoListEntry video={video} />))}
-  
-//   </div>)
-//   }
-// }
 
 
 

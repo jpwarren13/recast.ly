@@ -1,18 +1,20 @@
 import YOUTUBE_API_KEY from '../config/youtube.js';
 
-var searchYouTube = (options = {query: 'teahupoo'}, callback) => {
+var searchYouTube = (options = {q: 'teahupoo'}, callback) => {
   var query = {
     key: YOUTUBE_API_KEY,
     maxResults: 5,
     order: 'viewCount',
     type: 'video',
-    q: options.query,
-    part: 'snippet'
+    q: options.q,
+    part: 'snippet',
+    videoEmbeddable: true,
+    videoSyndicated: true
   };
   //     + '?videoEmbeddable=true',
 
   $.ajax({
-    url: 'https://www.googleapis.com/youtube/v3/search' + '?videoEmbeddable=true',
+    url: 'https://www.googleapis.com/youtube/v3/search',
     type: 'GET',
     data: query,
 

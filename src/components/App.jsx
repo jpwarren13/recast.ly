@@ -33,7 +33,7 @@ class App extends React.Component {
   }
 
   handleChange(query) {
-    const options = {q: this.state.query};
+    const options = {q: query};
 
     this.setState({query}, searchYouTube(options, this.setVideos.bind(this)));
 

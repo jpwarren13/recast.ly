@@ -4,19 +4,17 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: '',
+      value: 'teahupoo',
     };
     this.updateText = this.updateText.bind(this);
   }
 
   updateText(e) {
+    console.log(e);
     this.setState({value: e.target.value});
   }
 
-  updateInputValue(val) {
-    this.setState({
-      inputValue: val.value
-    });
+
   }
 
 
@@ -32,7 +30,7 @@ class Search extends React.Component {
       </div> 
     );
   }
-}
+
 { /* {this.state.inputValue} onChange={val => this.updateInputValue} */ }
 
 
